@@ -1,0 +1,122 @@
+prefer-no-csd
+
+spawn-at-startup "swaybg" "-i" "/home/heh/Pictures/wall.jpg"
+spawn-at-startup "waybar"
+
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:caps_toggle"
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    mouse {
+        accel-profile "flat"
+    }
+}
+
+output "eDP-1" { off; }
+output "HDMI-A-1" {
+    mode "1920x1080@120"
+    scale 1.0
+    position x=0 y=0
+}
+
+layout {
+    gaps 16
+    default-column-width { proportion 0.5; }
+    
+
+    //struts {
+        //top 60
+        //bottom 60
+    //}
+
+    focus-ring {
+        width 4
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+    }
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+T { spawn "alacritty"; }
+    Mod+E { spawn "fuzzel"; }
+    Mod+Shift+Q { close-window; }
+    Mod+Shift+E { quit; }
+
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+
+    XF86AudioRaiseVolume { focus-window-down-or-column-right; }
+    XF86AudioLowerVolume { focus-window-up-or-column-left; }
+    XF86AudioMute { center-column; }
+
+    Mod+Left { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+A { focus-column-left; }
+    Mod+D { focus-column-right; }
+
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+    Mod+S cooldown-ms=150 { focus-workspace-down; }
+    Mod+W cooldown-ms=150 { focus-workspace-up; }
+    Mod+Down cooldown-ms=150 { focus-workspace-down; }
+    Mod+Up cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+Down  { move-window-down; }
+    Mod+Ctrl+Up    { move-window-up; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Z { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+    Mod+V { toggle-window-floating; }
+
+    Mod+Shift+L { spawn "systemctl" "hibernate"; }
+    Mod+Return { spawn "alacritty"; }
+
+    Mod+X { switch-focus-between-floating-and-tiling; }
+    Mod+M { maximize-window-to-edges; }
+    Mod+Shift+M { fullscreen-window; }
+
+    Mod+Shift+R { switch-preset-window-height; }
+
+    Print { screenshot; }
+
+    
+}
+
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"                 
+spawn-at-startup "systemctl --user stop xdg-desktop-portal xdg-desktop-portal-wlr && systemctl --user start xdg-desktop-portal"
+
